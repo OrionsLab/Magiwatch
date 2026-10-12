@@ -38,7 +38,7 @@ Devices that aren't allowed are shown greyed out with a slash, and the list unde
 | Finite | Turn off everything in the device's area | Everything in an area |
 | Flick up / down (gesture) | One step brighter / louder, or dimmer / quieter | Lights, media players |
 
-Locks are not supported on purpose: a spoken word should not unlock a door.
+Devices the wand can control: lights, switches, input booleans (helper toggles), fans, media players, covers and climate. Locks are not supported on purpose: a spoken word should not unlock a door.
 
 Every successful cast fires a `wand_cast` event (`entity_id`, `spell`, `action`) that your own automations can use.
 

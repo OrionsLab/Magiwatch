@@ -4,6 +4,7 @@
 const DOMAIN_ICONS = {
   light: "mdi:lightbulb",
   switch: "mdi:toggle-switch",
+  input_boolean: "mdi:toggle-switch-outline",
   fan: "mdi:fan",
   media_player: "mdi:television",
   cover: "mdi:blinds",

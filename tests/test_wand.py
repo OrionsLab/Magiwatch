@@ -74,6 +74,19 @@ async def test_cast_allowed_and_denied(hass, wand, hass_ws_client, hass_client):
     assert (await resp.json())["error"] == "unknown_spell"
 
 
+async def test_input_boolean_lumos_nox(hass, wand, hass_ws_client, hass_client):
+    turn_off = async_mock_service(hass, "homeassistant", "turn_off")
+    hass.states.async_set("input_boolean.away", "on", {"friendly_name": "Away"})
+    ws = await hass_ws_client(hass)
+    await ws.send_json({"id": 1, "type": "wand/device/update", "entity_id": "input_boolean.away", "enabled": True})
+    assert (await ws.receive_json())["success"]
+
+    client = await hass_client()
+    resp = await client.post("/api/wand/cast", json={"entity_id": "input_boolean.away", "spell": "nox"})
+    assert await resp.json() == {"ok": True, "action": "homeassistant.turn_off"}
+    assert turn_off[0].data == {"entity_id": "input_boolean.away"}
+
+
 async def test_per_device_spell_limits(hass, wand, hass_ws_client, hass_client):
     async_mock_service(hass, "light", "turn_on")
     ws = await hass_ws_client(hass)

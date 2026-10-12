@@ -27,6 +27,7 @@ EVENT_CAST = "wand_cast"
 SUPPORTED_DOMAINS = (
     "light",
     "switch",
+    "input_boolean",
     "fan",
     "media_player",
     "cover",
