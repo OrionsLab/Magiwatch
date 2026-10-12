@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Wand",
+        "description": "Adds a Wand page to the sidebar. There you upload your floor plan, place the devices the wand may control and edit the spell words."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Wand is already set up."
+    }
+  }
+}
