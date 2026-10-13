@@ -71,10 +71,14 @@ SPELLS: tuple[Spell, ...] = (
     Spell("flick_up", "Flick up", (), {
         "light": Effect("light", "turn_on", {"brightness_step_pct": 10}),
         "media_player": Effect("media_player", "volume_up"),
+        "switch": Effect("switch", "turn_on"),
+        "input_boolean": Effect("input_boolean", "turn_on"),
     }, gesture=True),
     Spell("flick_down", "Flick down", (), {
         "light": Effect("light", "turn_on", {"brightness_step_pct": -10}),
         "media_player": Effect("media_player", "volume_down"),
+        "switch": Effect("switch", "turn_off"),
+        "input_boolean": Effect("input_boolean", "turn_off"),
     }, gesture=True),
 )
 

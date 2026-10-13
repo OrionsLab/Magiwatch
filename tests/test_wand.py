@@ -86,6 +86,14 @@ async def test_input_boolean_lumos_nox(hass, wand, hass_ws_client, hass_client):
     assert await resp.json() == {"ok": True, "action": "homeassistant.turn_off"}
     assert turn_off[0].data == {"entity_id": "input_boolean.away"}
 
+    flick_on = async_mock_service(hass, "input_boolean", "turn_on")
+    flick_off = async_mock_service(hass, "input_boolean", "turn_off")
+    resp = await client.post("/api/wand/cast", json={"entity_id": "input_boolean.away", "spell": "flick_up"})
+    assert await resp.json() == {"ok": True, "action": "input_boolean.turn_on"}
+    resp = await client.post("/api/wand/cast", json={"entity_id": "input_boolean.away", "spell": "flick_down"})
+    assert await resp.json() == {"ok": True, "action": "input_boolean.turn_off"}
+    assert flick_on[0].data == flick_off[0].data == {"entity_id": "input_boolean.away"}
+
 
 async def test_per_device_spell_limits(hass, wand, hass_ws_client, hass_client):
     async_mock_service(hass, "light", "turn_on")
